@@ -22,7 +22,7 @@ def generate_cards():
                 #print(card)
                 cards.append(card)
 
-    #print(cards)
+    print(cards)
     return(cards)
 
 
