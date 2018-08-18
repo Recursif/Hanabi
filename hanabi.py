@@ -6,16 +6,20 @@ from helpers.printers import *
 from helpers.draw_card import *
 
 
+
 # --- Initialisation ---
 # Initialisation of the board
 board = ['0B','0Y','0R','0W','0G']
 
 # Initialisation of the know infos
-know_infos = [
-    ["? ","? ","? ","? ","? "],
-    ["? ","? ","? ","? ","? "],
-    ["? ","? ","? ","? ","? "]
-]
+know_infos = []
+for i in range(nb_players)
+    know_infos.append(["? ","? ","? ","? ","? "])
+
+# Initialisation of the discard table
+table = []
+for i in range (5):
+    table.append([3,2,2,1,1])
 
 # --- Genaration of the deck ---
 # Generate the deck
