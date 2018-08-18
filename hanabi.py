@@ -3,6 +3,15 @@ import random
 
 from helpers.generate_cards import *
 
+card_colors = [
+    "B",
+    "Y",
+    "R",
+    "W",
+    "G",
+]
+
+
 cards = generate_cards()
 
 deck = cards[:]
@@ -11,7 +20,7 @@ random.shuffle(deck)
 
 nb_players = 3
 
-board = ['**','**','**','**','**']
+board = ['0B','0Y','0R','0W','0G']
 
 know_list = [
     ["? ","? ","? ","? ","? "],
@@ -63,6 +72,69 @@ def print_board():
     print(second_line)
     print("")
 
+def print_actions():
+    print("Choississez une action parmi celles-ci:")
+    print("")
+    print("1- Jouer une carte")
+    print("2- Défausser une carte")
+    print("3- Donner un indice")
+    print("4- Quittez")
+    print("")
+
+def print_instruction_play(hand):
+    print("Choississez la carte que vous voulez jouer")
+    print("")
+    for i in range(5):
+        print(str(i + 1) + "- " + hand[i])
+    print("")
+
+
+
+def get_card_to_play(hand):
+    action_value = input("")
+    print("")
+    while (not((action_value) in ["1","2","3","4","5"])):
+        print_board()
+        print("attention la valeur choisie doit être entre 1 et 5")
+        print("")
+        action_value = input("")
+        print("")
+
+    card_to_play = hand[int(action_value) - 1]
+    return (card_to_play)
+        
+
+def get_action():
+    action_value = input("")
+    print("")
+    while (not((action_value) in ["1","2","3","4"])):
+        print_board()
+        print("attention la valeur choisie doit être entre 1 et 4")
+        print("")
+        action_value = input("")
+        print("")
+    
+    return (action_value)
+
+def is_valid_card_to_play(board,card):
+
+    index_card = card_colors.index(card[1])
+
+    number_on_board = int(board[index_card][0])
+
+    if (number_on_board + 1 == int(card[0])):
+        return (True)
+    else:
+        return (False)
+
+def play_card(board,card):
+    index_card = card_colors.index(card[1])
+
+    board[index_card] = card
+
+    return board    
+
+
 
 # numéro du joueur actuel: [0 : nombre de joueurs - 1]
 turn = 0
@@ -79,6 +151,30 @@ print("\n*************\n")
 
 print_players_hand()
 print_board()
+print_actions()
+
+action = get_action()
+
+if (action == "1"):
+    print_instruction_play(hands_list[turn])
+    card_to_play = get_card_to_play(hands_list[turn])
+
+    if (is_valid_card_to_play(board,card_to_play)):
+        board = play_card(board,card_to_play)
+        print(board)
+    else:
+        print("AhAh!Erreur! Vous perdez un point et retournez en case radis")
+        errors_number += 1
+elif (action == "2"):
+    print("Nope")
+elif(action == "3"):
+    print("Nope")
+else:
+    print("au revoir!!")
+    end_game = True
+
+
+#print(action)
 
 """
 while (not(end_game)):
@@ -90,12 +186,5 @@ while (not(end_game)):
 
 
 print("partie terminée")
-
-
-
-
-            
-
-
 
 #def defausse():
