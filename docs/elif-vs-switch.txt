@@ -1,0 +1,20 @@
+
+## When to use If-else if-else over switch statements
+
+A switch is really saying "pick one of these based on this variables value" but an if statement is just a series of boolean checks.
+
+
+int value = // some value
+if (value == 1) {
+    doThis();
+} else if (value == 2) {
+    doThat();
+} else {
+    doTheOther();
+}
+
+This would be much better represented as a switch as it then makes it immediately obviously that the choice of action is occurring based on the value of "value" and not some arbitrary test.
+
+concerning Speed:
+Switch statements often perform faster than if-else constructs (but not always).
+
