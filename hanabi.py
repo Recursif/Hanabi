@@ -30,7 +30,7 @@ for index in range(nb_players):
     hands_list.append(hand_player)
     #print(hand_player)
 
-print(hands_list)
+#print(hands_list)
 
 
 def print_players_hand():

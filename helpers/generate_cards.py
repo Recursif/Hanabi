@@ -22,7 +22,6 @@ def generate_cards():
                 #print(card)
                 cards.append(card)
 
-    print(cards)
     return(cards)
 
 
