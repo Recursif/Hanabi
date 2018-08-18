@@ -3,10 +3,6 @@ import random
 
 from helpers.generate_cards import *
 
-
-
-
-
 cards = generate_cards()
 
 deck = cards[:]
@@ -15,7 +11,7 @@ random.shuffle(deck)
 
 nb_players = 3
 
-board = ['','','','','']
+board = ['**','**','**','**','**']
 
 know_list = [
     ["? ","? ","? ","? ","? "],
@@ -43,12 +39,12 @@ def print_players_hand():
     third_line = " "
 
     for i in range(nb_players):
-        first_line += "Joueur n° " + str(i) + "      "
-        second_line += " ".join(know_list[i])  + "   "
+        first_line += "Joueur n° " + str(i) + " " * 6
+        second_line += " ".join(know_list[i])  + " " * 3
         if i != turn:
-            third_line += " ".join(hands_list[i])  + "   "
+            third_line += " ".join(hands_list[i])  + " " * 3
         else:
-            third_line += " " * 17
+            third_line += "X  " * 5 + " " * 2
         #second_line += 
 
     print(first_line)
@@ -58,6 +54,14 @@ def print_players_hand():
     print(third_line)
     print("")
 
+def print_board():
+    first_line = "Board"
+    second_line = " ".join(board)
+
+    print(first_line)
+    print("")
+    print(second_line)
+    print("")
 
 
 # numéro du joueur actuel: [0 : nombre de joueurs - 1]
@@ -74,6 +78,7 @@ print("La partie commence!!")
 print("\n*************\n")
 
 print_players_hand()
+print_board()
 
 """
 while (not(end_game)):
