@@ -1,15 +1,15 @@
-
 try:
     from constant import *
-    from cards_utility import *
 except:
     from helpers.constant import *
-    from helpers.cards_utility import *
 
-
-# --- Discard Instructions ---
+from helpers.cards_utility import *
 
 def print_instruction_discard(know_infos): 
+    """
+        Discard Instructions
+
+    """
     print("Choississez la carte à défausser :")
     print("")
     for i in range(5):
@@ -17,9 +17,12 @@ def print_instruction_discard(know_infos):
     print("")
 
 
-# --- Retrieving card to discard ---
 
 def get_card_to_discard(hand):
+    """
+        Retrieving card to discard
+
+    """
     action_value = input("")
     print("")
     while (not((action_value) in ["1","2","3","4","5"])):
@@ -33,10 +36,12 @@ def get_card_to_discard(hand):
     return (card_to_discard)
 
 
-# --- Discard Function ---
-
 
 def discard():
+    """
+        Discard Function
+
+    """
     print_instruction_discard()
     card = get_card_to_discard()
 
@@ -47,9 +52,11 @@ def discard():
 
     # Tokens resolving
     if table[card_color][card_num]==1: 
-        error_token += 1    
+        error_token += 1
+        print("Erreur !")
     else:
         clue_token += 1
+        print("+1 indice !")
     # Removing card from the table
     table[card_color][card_num] -= 1
 
@@ -57,3 +64,6 @@ def discard():
     if table[card_color][card_num]==0:
         for i in range(5-card_num):
             table[card_color][card_num+i]=0
+
+    # Drawing
+    deck,hand = draw_card(deck,hand)
