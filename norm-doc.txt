@@ -1,0 +1,18 @@
+
+
+def my_function(array):
+    """
+        what it does
+
+        parameters **
+        -----------
+        my_array: array dimension
+
+        téta: int
+
+        return **
+        ----------
+        a_variable: str
+    """
+
+** optionnel

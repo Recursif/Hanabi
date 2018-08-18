@@ -1,15 +1,15 @@
 
 
-def print_players_hand(nb_players,turn,hands_list,know_list):
+def print_players_hand(nb_players,turn,hands,know_infos):
     first_line = " "
     second_line = " "
     third_line = " "
 
     for i in range(nb_players):
         first_line += "Joueur n° " + str(i) + " " * 6
-        second_line += " ".join(know_list[i])  + " " * 3
+        second_line += " ".join(know_infos[i])  + " " * 3
         if i != turn:
-            third_line += " ".join(hands_list[i])  + " " * 3
+            third_line += " ".join(hands[i])  + " " * 3
         else:
             third_line += "X  " * 5 + " " * 2
         #second_line += 
@@ -47,4 +47,19 @@ def print_instruction_play(hand):
     print("")
     for i in range(5):
         print(str(i + 1) + "- " + hand[i])
+    print("")
+
+
+def print_instruction_discard(know_infos):
+    """
+        Affiche les informations pour défausser une carte
+
+        parameters
+        -----------
+        know_infos: la liste des infos connu le joueur
+    """
+    print("Choississez la carte que vous voulez défausser")
+    print("")
+    for i in range(5):
+        print(str(i + 1) + "- " + know_infos[i])
     print("")

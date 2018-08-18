@@ -27,7 +27,7 @@ nb_players = 3
 
 board = ['0B','0Y','0R','0W','0G']
 
-know_cards = [
+know_infos = [
     ["? ","? ","? ","? ","? "],
     ["? ","? ","? ","? ","? "],
     ["? ","? ","? ","? ","? "]
@@ -91,10 +91,13 @@ def play_card(board,card):
 
     return board    
 
-def remove_card_from_end(hand,card):
+def remove_card_from_hand(hand,card):
     hand.remove(card)
     return hand
 
+def remove_card_from_know_infos(hand,card):
+    hand.remove(card)
+    return hand
 
 """
 def pop_played_card(hand,card):
@@ -116,7 +119,7 @@ print("\n*************\n")
 print("La partie commence!!")
 print("\n*************\n")
 
-print_players_hand(nb_players,turn,hands,know_cards)
+print_players_hand(nb_players,turn,hands,know_infos)
 print_board(board)
 print_actions()
 
@@ -129,8 +132,11 @@ if (action == "1"):
 
     if (is_valid_card_to_play(board,card)):
         board = play_card(board,card)
-        hand = remove_card_from_end(hand,card)
+        know_infos = remove_card_from_know_infos(hand,know_infos,card)
+        hand = remove_card_from_hand(hand,card)
+        print(know_infos)
         print(hand)
+        print(hands[turn])
         hand = draw_card(deck,hand)
         print(hand)
         print(board)
@@ -138,9 +144,11 @@ if (action == "1"):
         print("AhAh! Erreur! Vous perdez un point et retournez en case radis")
         errors_number += 1
 elif (action == "2"):
-    print("Nope")
+    print("defausser une carte n'est pas encore implemeté")
+    discard()
 elif(action == "3"):
     print("Nope")
+    give_clues()
 else:
     print("au revoir!!")
     end_game = True

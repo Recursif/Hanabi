@@ -2,7 +2,6 @@ table = []
 error = 0
 token = 0
 
-card = "4R"
 
 colors = [
     "B",
@@ -11,6 +10,26 @@ colors = [
     "W",
     "G",
 ]
+
+def get_card_to_discard(hand):
+    action_value = input("")
+    print("")
+    while (not((action_value) in ["1","2","3","4","5"])):
+        print_board()
+        print("attention la valeur choisie doit être entre 1 et 5")
+        print("")
+        action_value = input("")
+        print("")
+
+    card_to_discard = hand[int(action_value) - 1]
+    return (card_to_discard)
+
+
+def discard():
+    print_instruction_discard()
+    card = get_card_to_discard()
+    
+
 
 #table generation
 for i in range (5):
