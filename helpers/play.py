@@ -50,12 +50,14 @@ def remove_card_from_hand(hand,card):
     hand.remove(card)
     return hand
 
-def remove_card_from_know_info(hand,card):
-    hand.remove(card)
-    return hand
+def remove_card_from_know_info(hand,know_infos,card):
+    index_card = hand.index(card)
+    
+    know_infos[index_card] = "? "
+    return know_infos
     
 
-def play(deck,board,hands,know_infos,turn):
+def play(deck,board,hands,know_infos,error_token,turn):
     """
         Action play
 
@@ -68,6 +70,8 @@ def play(deck,board,hands,know_infos,turn):
         hands: the list of the cards of the player (unknow for the current player)
 
         know_infos: list of the know infos
+
+        error_token: the number of error token
 
         turn: the number of the current player
 
@@ -83,24 +87,24 @@ def play(deck,board,hands,know_infos,turn):
     know_info = know_infos[turn]
 
     # Get the card selected by the current player
-    print_instruction_play(hand)
+    print_instruction_play(hand) # replace by know info
     card = get_card_to_play(hand)
 
     if (is_valid_card_to_play(board,card)):
-
+        # If the play is valid play it on the board
         board = play_card(board,card)
-        #know_infos = remove_card_from_know_infos(hand,know_info,card)
+        
+        # Then remove the card from the hand of the player
+        know_info = remove_card_from_know_info(hand,know_info,card)
         hand = remove_card_from_hand(hand,card)
 
-        print(know_info)
-        print(hand)
-        print(hands[turn])
-        
+        # Finally draw a card
         hand = draw_card(deck,hand)
-        print(hand)
         print(board)
     else:
-        print("Erreur! Vous perdez un point et retournez en case radis!")
-        errors_number += 1
+        #
+        error_token += 1
+        print("Erreur! Vous perdez une vie!")
+
     
-    return deck,board,hands,know_infos
+    return deck,board,hands,know_infos,error_token

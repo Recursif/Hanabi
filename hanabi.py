@@ -95,10 +95,10 @@ turn = 0
 is_game_ended = False
 
 # Number of error tokens used : [0 ; 3]
-error_tokens = 0
+error_token = 0
 
 # Number of clue tokens used : [0 ; 8]
-clue_tokens = 0
+clue_token = 0
 
 
 print_start_game()
@@ -121,7 +121,7 @@ action = get_action()
 
 # --- Start the selected action ---
 if (action == "1"):
-    deck,board,hands,know_infos = play(deck,board,hands,know_infos,turn)
+    deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
 elif (action == "2"):
     print("Defausser une carte n'est pas encore implemeté")
     #discard()
