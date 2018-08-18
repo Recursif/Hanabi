@@ -25,6 +25,13 @@ def get_card_to_discard(hand):
     return (card_to_discard)
 
 
+    """
+        Draw card function
+
+        return hand with a one more card if the deck not empty
+
+    """
+
 def discard():
     print_instruction_discard()
     card = get_card_to_discard()
