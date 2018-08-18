@@ -1,6 +1,6 @@
 
 
-def print_players_hand(nb_player,hands_list,know_list):
+def print_players_hand(nb_players,turn,hands_list,know_list):
     first_line = " "
     second_line = " "
     third_line = " "

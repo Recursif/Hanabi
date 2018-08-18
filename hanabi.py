@@ -12,6 +12,10 @@ card_colors = [
     "G",
 ]
 
+def draw_card(deck,hand):
+    hand.append(deck.pop())
+    return hand
+
 
 cards = generate_cards()
 
@@ -41,9 +45,7 @@ for index in range(nb_players):
 
 print(hands)
 
-def draw_card(deck,hand):
-    hand.append(deck.pop())
-    return hand
+
 
 def get_card_to_play(hand):
     action_value = input("")
@@ -89,13 +91,17 @@ def play_card(board,card):
 
     return board    
 
-def pop_played_card(hand,card):
-    hand.pop(card)
+def remove_card_from_end(hand,card):
+    hand.remove(card)
     return hand
 
+
+"""
 def pop_played_card(hand,card):
     hand.pop(card)
     return hand
+"""
+
 
 # numéro du joueur actuel: [0 : nombre de joueurs - 1]
 turn = 0
@@ -110,7 +116,7 @@ print("\n*************\n")
 print("La partie commence!!")
 print("\n*************\n")
 
-print_players_hand(nb_player,hands_list,know_cards)
+print_players_hand(nb_players,turn,hands,know_cards)
 print_board(board)
 print_actions()
 
@@ -123,7 +129,7 @@ if (action == "1"):
 
     if (is_valid_card_to_play(board,card)):
         board = play_card(board,card)
-        hand = pop_played_card(hand,card)
+        hand = remove_card_from_end(hand,card)
         print(hand)
         hand = draw_card(deck,hand)
         print(hand)
