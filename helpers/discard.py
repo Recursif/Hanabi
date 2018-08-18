@@ -33,6 +33,25 @@ def get_card_to_discard(hand):
     return (card_to_discard)
 
 
+<<<<<<< HEAD
+=======
+    """
+        Draw card function
+
+        return hand with a one more card if the deck not empty
+
+    """
+
+def discard():
+    print_instruction_discard()
+    card = get_card_to_discard()
+    
+
+
+#table generation
+for i in range (5):
+    table.append([3,2,2,1,1])
+>>>>>>> 9c9a25c2e5ab11fcafdf95b3b982aeed934d30f9
 
 # --- Discard Function ---
 
