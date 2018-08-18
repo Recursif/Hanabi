@@ -2,6 +2,7 @@
 import random 
 
 from helpers.generate_cards import *
+from helpers.printers import *
 
 card_colors = [
     "B",
@@ -22,73 +23,27 @@ nb_players = 3
 
 board = ['0B','0Y','0R','0W','0G']
 
-know_list = [
+know_cards = [
     ["? ","? ","? ","? ","? "],
     ["? ","? ","? ","? ","? "],
     ["? ","? ","? ","? ","? "]
 ]
 
 #distribution des mains
-hands_list = []
+hands = []
 
 for index in range(nb_players):
-    hand_player = []
+    hand = []
     for i in range(5):
-        hand_player.append(deck.pop())
-        #hand_player.append()
-    hands_list.append(hand_player)
-    #print(hand_player)
-
-#print(hands_list)
+        hand = draw_card(deck,hand)
+    hands.append(hand)
 
 
-def print_players_hand():
-    first_line = " "
-    second_line = " "
-    third_line = " "
+print(hands)
 
-    for i in range(nb_players):
-        first_line += "Joueur n° " + str(i) + " " * 6
-        second_line += " ".join(know_list[i])  + " " * 3
-        if i != turn:
-            third_line += " ".join(hands_list[i])  + " " * 3
-        else:
-            third_line += "X  " * 5 + " " * 2
-        #second_line += 
-
-    print(first_line)
-    print("")
-    print(second_line)
-    print("")
-    print(third_line)
-    print("")
-
-def print_board():
-    first_line = "Board"
-    second_line = " ".join(board)
-
-    print(first_line)
-    print("")
-    print(second_line)
-    print("")
-
-def print_actions():
-    print("Choississez une action parmi celles-ci:")
-    print("")
-    print("1- Jouer une carte")
-    print("2- Défausser une carte")
-    print("3- Donner un indice")
-    print("4- Quittez")
-    print("")
-
-def print_instruction_play(hand):
-    print("Choississez la carte que vous voulez jouer")
-    print("")
-    for i in range(5):
-        print(str(i + 1) + "- " + hand[i])
-    print("")
-
-
+def draw_card(deck,hand):
+    hand.append(deck.pop())
+    return hand
 
 def get_card_to_play(hand):
     action_value = input("")
@@ -134,7 +89,13 @@ def play_card(board,card):
 
     return board    
 
+def pop_played_card(hand,card):
+    hand.pop(card)
+    return hand
 
+def pop_played_card(hand,card):
+    hand.pop(card)
+    return hand
 
 # numéro du joueur actuel: [0 : nombre de joueurs - 1]
 turn = 0
@@ -149,21 +110,26 @@ print("\n*************\n")
 print("La partie commence!!")
 print("\n*************\n")
 
-print_players_hand()
-print_board()
+print_players_hand(nb_player,hands_list,know_cards)
+print_board(board)
 print_actions()
 
 action = get_action()
 
 if (action == "1"):
-    print_instruction_play(hands_list[turn])
-    card_to_play = get_card_to_play(hands_list[turn])
+    hand = hands[turn]
+    print_instruction_play(hand)
+    card = get_card_to_play(hand)
 
-    if (is_valid_card_to_play(board,card_to_play)):
-        board = play_card(board,card_to_play)
+    if (is_valid_card_to_play(board,card)):
+        board = play_card(board,card)
+        hand = pop_played_card(hand,card)
+        print(hand)
+        hand = draw_card(deck,hand)
+        print(hand)
         print(board)
     else:
-        print("AhAh!Erreur! Vous perdez un point et retournez en case radis")
+        print("AhAh! Erreur! Vous perdez un point et retournez en case radis")
         errors_number += 1
 elif (action == "2"):
     print("Nope")
