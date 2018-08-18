@@ -18,7 +18,7 @@ def generate_cards():
             rep = repartition[index]
             #print(rep)
             for i in range(rep):
-                card = str(index + 1) + card_color
+                card = str(index + 1) + color
                 #print(card)
                 cards.append(card)
 

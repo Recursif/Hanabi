@@ -1,4 +1,9 @@
 
+try:
+    from constant import *
+except:
+    from helpers.constant import *
+
 
 def print_start_game():
     print("\n***************\n")

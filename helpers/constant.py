@@ -1,6 +1,6 @@
 
 
-# The number of player :
+# The number of player
 nb_players = 3
 
 # The repartion for each card

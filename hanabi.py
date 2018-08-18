@@ -1,11 +1,13 @@
 
 import random 
 
-from helpers.generate_cards import *
+from helpers.constant import *
 from helpers.printers import *
-from helpers.draw_card import *
+from helpers.cards_utility import *
 
-
+from helpers.play import *
+from helpers.discard import *
+from helpers.give_clues import *
 
 # --- Initialisation ---
 # Initialisation of the board
@@ -13,7 +15,7 @@ board = ['0B','0Y','0R','0W','0G']
 
 # Initialisation of the know infos
 know_infos = []
-for i in range(nb_players)
+for i in range(nb_players):
     know_infos.append(["? ","? ","? ","? ","? "])
 
 # Initialisation of the discard table
@@ -61,7 +63,7 @@ def print_actions():
     print("4- Quittez")
     print("")
 
-def get_action_from_player():
+def get_action():
     """
         Get the action selected by the player
 
@@ -85,9 +87,6 @@ def get_action_from_player():
 
 
 # --- Parameter of the game ---
-
-# The number of player :
-nb_players = 3
 
 # Number of the current player : [0 ; nb_players - 1]
 turn = 0

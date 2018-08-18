@@ -1,4 +1,12 @@
 
+try:
+    from constant import *
+    from cards_utility import *
+except:
+    from helpers.constant import *
+    from helpers.cards_utility import *
+
+
 def print_instruction_play(hand):
     print("Choississez la carte que vous voulez jouer")
     print("")
@@ -22,7 +30,7 @@ def get_card_to_play(hand):
 
 def is_valid_card_to_play(board,card):
 
-    index_card = card_colors.index(card[1])
+    index_card = card_color.index(card[1])
 
     number_on_board = int(board[index_card][0])
 
@@ -32,7 +40,7 @@ def is_valid_card_to_play(board,card):
         return (False)
 
 def play_card(board,card):
-    index_card = card_colors.index(card[1])
+    index_card = card_color.index(card[1])
 
     board[index_card] = card
 
@@ -42,7 +50,7 @@ def remove_card_from_hand(hand,card):
     hand.remove(card)
     return hand
 
-def remove_card_from_know_infos(hand,card):
+def remove_card_from_know_info(hand,card):
     hand.remove(card)
     return hand
     
@@ -71,6 +79,9 @@ def play(deck,board,hands,know_infos,turn):
     # the hand of the player
     hand = hands[turn]
 
+    # the know info from the player
+    know_info = know_infos[turn]
+
     # Get the card selected by the current player
     print_instruction_play(hand)
     card = get_card_to_play(hand)
@@ -78,10 +89,10 @@ def play(deck,board,hands,know_infos,turn):
     if (is_valid_card_to_play(board,card)):
 
         board = play_card(board,card)
-        know_infos = remove_card_from_know_infos(hand,know_infos,card)
+        #know_infos = remove_card_from_know_infos(hand,know_info,card)
         hand = remove_card_from_hand(hand,card)
 
-        print(know_infos)
+        print(know_info)
         print(hand)
         print(hands[turn])
         
