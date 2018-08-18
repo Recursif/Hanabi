@@ -1,9 +1,13 @@
 
 import random 
 
-from helpers.generate_cards import *
+from helpers.constant import *
 from helpers.printers import *
-from helpers.draw_card import *
+from helpers.cards_utility import *
+
+from helpers.play import *
+from helpers.discard import *
+from helpers.give_clues import *
 
 
 # --- Initialisation ---
@@ -82,8 +86,6 @@ def get_action_from_player():
 
 # --- Parameter of the game ---
 
-# The number of player :
-nb_players = 3
 
 # Number of the current player : [0 ; nb_players - 1]
 turn = 0
