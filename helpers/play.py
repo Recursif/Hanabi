@@ -8,6 +8,10 @@ except:
 
 
 def print_instruction_play(hand):
+    """
+        Print Play Instructions
+
+    """
     print("Choississez la carte que vous voulez jouer")
     print("")
     for i in range(5):
@@ -15,6 +19,10 @@ def print_instruction_play(hand):
     print("")
 
 def get_card_to_play(hand):
+    """
+        Retrieving card to play
+
+    """
     action_value = input("")
     print("")
     while (not((action_value) in ["1","2","3","4","5"])):
@@ -29,7 +37,10 @@ def get_card_to_play(hand):
 
 
 def is_valid_card_to_play(board,card):
+    """
+        Checking valid play
 
+    """
     index_card = card_color.index(card[1])
 
     number_on_board = int(board[index_card][0])
@@ -71,13 +82,14 @@ def play(deck,board,hands,know_infos,error_token,turn):
 
         know_infos: list of the know infos
 
-        error_token: the number of error token
+        error_token: the number of error tokens
 
         turn: the number of the current player
 
         return
         -------
-        the new state for the deck the hands the know_infos after the play
+        the new state for deck, hands, know_infos, and error_token
+        after the play
     """
     
     # the hand of the player
@@ -97,14 +109,13 @@ def play(deck,board,hands,know_infos,error_token,turn):
         # Then remove the card from the hand of the player
         know_info = remove_card_from_know_info(hand,know_info,card)
         hand = remove_card_from_hand(hand,card)
-
-        # Finally draw a card
-        hand = draw_card(deck,hand)
-        print(board)
     else:
-        #
+        # Error if wrong play
         error_token += 1
         print("Erreur! Vous perdez une vie!")
 
-    
+    # Finally draw a card
+    hand = draw_card(deck,hand)
+    print(board)
+
     return deck,board,hands,know_infos,error_token

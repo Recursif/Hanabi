@@ -37,10 +37,3 @@ def draw_card(deck,hand):
     else:
         print("the deck is empty")
     return hand
-    
-
-
-
-
-
-

@@ -40,19 +40,3 @@ def print_board(board):
     print("")
     print(second_line)
     print("")
-
-
-
-def print_instruction_discard(know_infos):
-    """
-        Affiche les informations pour défausser une carte
-
-        parameters
-        -----------
-        know_infos: la liste des infos connu le joueur
-    """
-    print("Choississez la carte que vous voulez défausser")
-    print("")
-    for i in range(5):
-        print(str(i + 1) + "- " + know_infos[i])
-    print("")

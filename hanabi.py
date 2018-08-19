@@ -1,17 +1,18 @@
 
 import random 
 
-from helpers.constant import *
 from helpers.printers import *
-from helpers.cards_utility import *
-
-from helpers.play import *
 from helpers.discard import *
-from helpers.give_clues import *
+from helpers.cards_utility import *
+from helpers.play import *
+
 
 # --- Initialisation ---
 # Initialisation of the board
 board = ['0B','0Y','0R','0W','0G']
+
+# Number of players
+nb_players = 3
 
 # Initialisation of the know infos
 know_infos = []
@@ -53,7 +54,7 @@ for i in range(nb_players):
 # --- Functions to print and select the action available during the turn ---
 def print_actions():
     """
-        Print the difference choice of action available
+        Print the different action choice available
     """
     print("Choississez une action parmi celles-ci:")
     print("")
@@ -63,7 +64,7 @@ def print_actions():
     print("4- Quittez")
     print("")
 
-def get_action():
+def get_action_from_player():
     """
         Get the action selected by the player
 
@@ -76,7 +77,7 @@ def get_action():
     print("")
     while (not((action) in ["1","2","3","4"])):
         print_board()
-        print("attention la valeur choisie doit être entre 1 et 4")
+        print("Attention la valeur choisie doit être entre 1 et 4")
         print("")
         action = input("")
         print("")
@@ -87,6 +88,9 @@ def get_action():
 
 
 # --- Parameter of the game ---
+
+# The number of player :
+nb_players = 3
 
 # Number of the current player : [0 ; nb_players - 1]
 turn = 0
@@ -116,21 +120,20 @@ print_board(board)
 
 # Get the action selected by the current player
 print_actions()
-action = get_action()
+action = get_action_from_player()
 
 
 # --- Start the selected action ---
 if (action == "1"):
-    deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
+    deck,board,hands,know_infos = play(deck,board,hands,know_infos,turn)
 elif (action == "2"):
-    print("Defausser une carte n'est pas encore implemeté")
-    #discard()
+    deck,hands,know_infos,error_token,clue_token,table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
 elif(action == "3"):
     print("Donner un indice n'est pas encore implemeté")
     #give_clues()
 else:
-    print("au revoir!!")
+    print("Au revoir !!")
     end_game = True
 
 
-print("partie terminée!")
+print("Partie terminée !")
