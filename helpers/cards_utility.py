@@ -37,3 +37,37 @@ def draw_card(deck,hand):
     else:
         print("the deck is empty")
     return hand
+
+
+# --- Functions to print and select the action available during the turn ---
+def print_actions():
+    """
+        Print the different action choice available
+    """
+    print("Choississez une action parmi celles-ci:")
+    print("")
+    print("1- Jouer une carte")
+    print("2- Défausser une carte")
+    print("3- Donner un indice")
+    print("4- Quittez")
+    print("")
+
+def get_action_from_player():
+    """
+        Get the action selected by the player
+
+        return
+        -------
+        action: int 
+            the action value selected
+    """
+    action = input("")
+    print("")
+    while (not((action) in ["1","2","3","4"])):
+        print_board()
+        print("Attention la valeur choisie doit être entre 1 et 4")
+        print("")
+        action = input("")
+        print("")
+    
+    return (action)

@@ -1,11 +1,14 @@
 try:
     from constant import *
+    from cards_utility import *
+    from printers import *
 except:
     from helpers.constant import *
+    from helpers.cards_utility import *
+    from helpers.printers import *
 
-from helpers.cards_utility import *
 
-def print_instruction_discard(know_infos): 
+def print_instruction_discard(know_infos,turn): 
     """
         Print Discard Instructions
 
@@ -13,7 +16,7 @@ def print_instruction_discard(know_infos):
     print("Choississez la carte à défausser :")
     print("")
     for i in range(5):
-        print(str(i + 1) + "- " + know_infos[i])
+        print(str(i + 1) + "- " + know_infos[turn][i])
     print("")
 
 
@@ -52,7 +55,7 @@ def remove_card_from_know_info(hand,know_infos,card):
     return know_infos
 
 
-def discard(deck,hands,know_infos,error_token,clue_token,turn,table):
+def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
     """
         Discard Function
 
@@ -74,11 +77,12 @@ def discard(deck,hands,know_infos,error_token,clue_token,turn,table):
 
         return
         ------
-        the new state for deck, hands, know_infos, error_token,
+        the new state for deck, hands, know_infos, table, error_token,
         and clue_token after the play
     """
-    print_instruction_discard(know_infos)
-    card = get_card_to_discard()
+    print_instruction_discard(know_infos,turn)
+    print(hand[0])
+    card = get_card_to_discard(hand)
 
     # Retrieving card location
     card_num = int(card[0]) -1
@@ -95,7 +99,7 @@ def discard(deck,hands,know_infos,error_token,clue_token,turn,table):
     # Removing card from the table
     table[card_color][card_num] -= 1
 
-    # Particular case for unfinishable color of cards
+    # Particular case for unfinishable color of cards will not be counted as an error
     if table[card_color][card_num]==0:
         for i in range(5-card_num):
             table[card_color][card_num+i]=0
@@ -107,4 +111,4 @@ def discard(deck,hands,know_infos,error_token,clue_token,turn,table):
     # Drawing
     deck,hand = draw_card(deck,hand)
 
-    return deck,hands,know_infos,error_token,clue_token,table
+    return deck,hand,know_infos,error_token,clue_token,table

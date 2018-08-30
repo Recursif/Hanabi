@@ -48,44 +48,6 @@ for i in range(nb_players):
     hands.append(hand)
 
 
-# print(hands)
-
-
-# --- Functions to print and select the action available during the turn ---
-def print_actions():
-    """
-        Print the different action choice available
-    """
-    print("Choississez une action parmi celles-ci:")
-    print("")
-    print("1- Jouer une carte")
-    print("2- Défausser une carte")
-    print("3- Donner un indice")
-    print("4- Quittez")
-    print("")
-
-def get_action_from_player():
-    """
-        Get the action selected by the player
-
-        return
-        -------
-        action: int 
-            the action value selected
-    """
-    action = input("")
-    print("")
-    while (not((action) in ["1","2","3","4"])):
-        print_board()
-        print("Attention la valeur choisie doit être entre 1 et 4")
-        print("")
-        action = input("")
-        print("")
-    
-    return (action)
-
-
-
 
 # --- Parameter of the game ---
 
@@ -125,7 +87,7 @@ action = get_action_from_player()
 
 # --- Start the selected action ---
 if (action == "1"):
-    deck,board,hands,know_infos = play(deck,board,hands,know_infos,turn)
+    deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
 elif (action == "2"):
     deck,hands,know_infos,error_token,clue_token,table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
 elif(action == "3"):
@@ -134,6 +96,8 @@ elif(action == "3"):
 else:
     print("Au revoir !!")
     end_game = True
+# ajouter fonction de changement de tour #
 
-
+print("-----------------")
 print("Partie terminée !")
+print("-----------------")
