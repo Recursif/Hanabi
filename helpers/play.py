@@ -33,7 +33,7 @@ def get_card_to_play(hand):
         print("")
 
     card_to_play = hand[int(action_value) - 1]
-    return (card_to_play)
+    return card_to_play
 
 
 def is_valid_card_to_play(board,card):
@@ -41,7 +41,7 @@ def is_valid_card_to_play(board,card):
         Checking valid play
 
     """
-    index_card = card_color.index(card[1])
+    index_card = colors.index(card[1])
 
     number_on_board = int(board[index_card][0])
 
@@ -51,20 +51,18 @@ def is_valid_card_to_play(board,card):
         return (False)
 
 def play_card(board,card):
-    index_card = card_color.index(card[1])
+    index_card = colors.index(card[1])
 
     board[index_card] = card
 
     return board    
 
 def remove_card_from_hand(hand,card):
-    hand.remove(card)
+    
     return hand
 
 def remove_card_from_know_info(hand,know_infos,card):
-    index_card = hand.index(card)
     
-    know_infos[index_card] = "? "
     return know_infos
     
 
@@ -91,31 +89,32 @@ def play(deck,board,hands,know_infos,error_token,turn):
         the new state for deck, hands, know_infos, and error_token
         after the play
     """
-    
-    # the hand of the player
-    hand = hands[turn]
 
     # the know info from the player
     know_info = know_infos[turn]
 
-    # Get the card selected by the current player
-    print_instruction_play(hand) # replace by know info
-    card = get_card_to_play(hand)
 
+    # Get the card selected by the current player
+    print_instruction_play(hands[turn]) # replace by know info
+    card = get_card_to_play(hands[turn])
+
+    index_card = hands[turn].index(card)
+    
+    
     if (is_valid_card_to_play(board,card)):
         # If the play is valid play it on the board
         board = play_card(board,card)
         
         # Then remove the card from the hand of the player
-        know_info = remove_card_from_know_info(hand,know_info,card)
-        hand = remove_card_from_hand(hand,card)
+        know_infos[index_card] = "? "
+        hands[turn].remove(card)
+
+        # Finally draw a card
+        hands[turn] = draw_card(deck,hands[turn])
     else:
         # Error if wrong play
         error_token += 1
         print("Erreur! Vous perdez une vie!")
 
-    # Finally draw a card
-    hand = draw_card(deck,hand)
-    print(board)
 
     return deck,board,hands,know_infos,error_token
