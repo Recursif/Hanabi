@@ -83,7 +83,7 @@ def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
     """
     print_instruction_discard(know_infos,turn)
     print(hand[turn])
-    card = get_card_to_discard(hand)
+    card = get_card_to_discard(hand[turn])
 
     # Retrieving card location
     card_num = int(card[0]) -1

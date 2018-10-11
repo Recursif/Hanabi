@@ -17,13 +17,13 @@ def check_end_game(error_token, board, nb_players):
         print("Perdu!!")
         print("")
         return True
-    elif (board == ['5B','5Y','5R','5W','5G'])
+    elif (board == ['5B','5Y','5R','5W','5G']):
         print("")
         print("Félicitations, c'est gagné!!")
         print("")
         print("Score : " + get_score(board))
         print("")
         return True
-    else
+    else:
         return False
 

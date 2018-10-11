@@ -3,7 +3,7 @@ import random
 
 from helpers.init import init_know_infos, init_discard_table
 from helpers.cards_utility import generate_cards, draw_card, distribute_hands
-from helpers.printers import print_start_game
+from helpers.printers import print_start_game, print_players_hand, print_board
 
 from helpers.get_actions import get_action_from_player
 from helpers.play import play
@@ -71,7 +71,7 @@ while (not(is_game_ended)):
     print_board(board)
 
     # Get the action selected by the current player
-    action = get_action_from_player()
+    action = get_action_from_player(clue_token)
 
     # --- Start the selected action ---
     

@@ -13,7 +13,7 @@ def generate_cards():
 
     """
     cards = []
-    for color in card_color:
+    for color in colors:
         #print(color)
         for index in range(len(repartition)):
             rep = repartition[index]

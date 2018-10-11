@@ -7,7 +7,7 @@ except:
     from helpers.printers import print_players_hand, print_board
 
 
-def print_instructions_clues()
+def print_instructions_clues():
     """
         Print Clue Giving Instructions
     
@@ -18,7 +18,8 @@ def print_instructions_clues()
     print("1- une couleur")
     print("2- un chiffre")
 
-def get_clue_choice()
+
+def get_clue_choice():
     """
         Retrieve Clue Giving Choice
 
@@ -70,7 +71,7 @@ def give_clues(turn,hands,know_infos,board,clue_token):
         the new state of know_infos and clue_token after giving a clue
     """
 
-    print_instructions_clues
-    print_players_hand
-    print_board
+    #print_instructions_clues
+    #print_players_hand
+    #print_board
 
