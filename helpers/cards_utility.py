@@ -39,35 +39,24 @@ def draw_card(deck,hand):
     return hand
 
 
-# --- Functions to print and select the action available during the turn ---
-def print_actions():
-    """
-        Print the different action choice available
-    """
-    print("Choississez une action parmi celles-ci:")
-    print("")
-    print("1- Jouer une carte")
-    print("2- Défausser une carte")
-    print("3- Donner un indice")
-    print("4- Quittez")
-    print("")
 
-def get_action_from_player():
+
+def distribute_hands(nb_players, deck):
     """
-        Get the action selected by the player
+        Distribute the hands for the player
 
         return
         -------
-        action: int 
-            the action value selected
+        hands: N-array size nb_players x 5 
+            the different hand of the players
     """
-    action = input("")
-    print("")
-    while (not((action) in ["1","2","3","4"])):
-        print_board()
-        print("Attention la valeur choisie doit être entre 1 et 4")
-        print("")
-        action = input("")
-        print("")
-    
-    return (action)
+    hands = []
+    for i in range(nb_players):
+        # hand a list of 5 cards distributed to the player
+        hand = []
+
+        for j in range(5):
+            hand = draw_card(deck,hand)
+        
+        # for each player add his hand to the hands list
+        hands.append(hand)

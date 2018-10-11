@@ -6,11 +6,12 @@ except:
 
 
 def print_start_game():
-    print("\n***************\n")
+    print("\n*******************\n")
     print("La partie commence!")
-    print("\n***************\n")
+    print("\n*******************\n")
 
-def print_players_hand(nb_players,turn,hands,know_infos):
+
+def print_players_hand(nb_players, turn, hands, know_infos):
     first_line = " "
     second_line = " "
     third_line = " "
@@ -40,3 +41,16 @@ def print_board(board):
     print("")
     print(second_line)
     print("")
+
+
+def print_actions():
+    """
+        Print the different action choice available
+    """
+    print("Choississez une action parmi celles-ci:")
+    print("")
+    print("1- Jouer une carte")
+    print("2- Défausser une carte")
+    print("3- Donner un indice")
+    print("4- Quit")
+

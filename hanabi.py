@@ -3,7 +3,7 @@ import random
 
 from helpers.printers import *
 from helpers.discard import *
-from helpers.cards_utility import *
+from helpers.cards_utility import generate_cards, draw_card, distribute_hands
 from helpers.play import *
 
 
@@ -35,18 +35,7 @@ random.shuffle(deck)
 # --- Distribution of the hands of the different players ---
 
 # hands the list of the different player's hand
-hands = []
-
-for i in range(nb_players):
-    # hand a list of 5 cards distributed to the player
-    hand = []
-
-    for j in range(5):
-        hand = draw_card(deck,hand)
-    
-    # for each player add his hand to the hands list
-    hands.append(hand)
-
+hands = distribute_hands(nb_players, deck)
 
 
 # --- Parameter of the game ---
@@ -71,31 +60,30 @@ print_start_game()
 
 
 # --- Play until the game is not ended
-"""
 while (not(is_game_ended)):
     turn += 1
-"""
-
-# Print the infos on the current turn
-print_players_hand(nb_players,turn,hands,know_infos)
-print_board(board)
-
-# Get the action selected by the current player
-print_actions()
-action = get_action_from_player()
 
 
-# --- Start the selected action ---
-if (action == "1"):
-    deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
-elif (action == "2"):
-    deck,hands,know_infos,error_token,clue_token,table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
-elif(action == "3"):
-    print("Donner un indice n'est pas encore implemeté")
-    #give_clues()
-else:
-    print("Au revoir !!")
-    end_game = True
+    # Print the infos on the current turn
+    print_players_hand(nb_players,turn,hands,know_infos)
+    print_board(board)
+
+    # Get the action selected by the current player
+    print_actions()
+    action = get_action_from_player()
+
+
+    # --- Start the selected action ---
+    if (action == "1"):
+        deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
+    elif (action == "2"):
+        deck,hands,know_infos,error_token,clue_token,table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
+    elif(action == "3"):
+        print("Donner un indice n'est pas encore implemeté")
+        #give_clues()
+    else:
+        print("Au revoir !!")
+        end_game = True
 # ajouter fonction de changement de tour #
 
 print("-----------------")
