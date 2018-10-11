@@ -7,6 +7,29 @@ except:
     from helpers.printers import print_players_hand, print_board
 
 
+def get_player_selected(hands, nb_players, turn):
+    """
+        Print instructions clues color
+    """
+
+    hand = ""
+    print("")
+    while (not((hand) in [x for x in range(len(nb_players) - 1)])):
+
+         if color != "":
+                print("Attention la main choisie doit être entre 1 et " + str(len(nb_players) - 1)))
+
+        print("Choississez la main que vous voulez selectionner")
+        print("")
+        for i in range(len(hands)):
+            print(str(i) + "- " + " ".join(hands[i]))
+        print("")
+        hand = input("")
+        print("")
+    
+    if ()
+    return color
+
 
 def get_color_clue(possible_colors):
     """
@@ -19,7 +42,7 @@ def get_color_clue(possible_colors):
     while (not((color) in [x for x in range(len(possible_colors))])):
 
          if color != "":
-                print("Attention la valeur choisie doit être entre 1 et " + len(possible_colors))
+                print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_colors)))
 
         print("Choississez la couleur pour votre indice")
         print("")
@@ -30,6 +53,7 @@ def get_color_clue(possible_colors):
         print("")
     
     return color
+
 
 def get_number_clue(possible_number):
     """
@@ -42,7 +66,7 @@ def get_number_clue(possible_number):
     while (not((number) in [x for x in range(len(possible_number))])):
 
          if color != "":
-                print("Attention la valeur choisie doit être entre 1 et " + len(possible_number))
+                print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_number)))
 
         print("Choississez la couleur pour votre indice")
         print("")
@@ -55,44 +79,21 @@ def get_number_clue(possible_number):
     return number
 
 
-def get_color_clue(possible_colors):
-    """
-        Print instructions clues color
-    """
-
-    
-    color = ""
-    print("")
-    while (not((color) in [x for x in range(len(possible_colors))])):
-
-         if color != "":
-                print("Attention la valeur choisie doit être entre 1 et " + len(possible_colors))
-
-        print("Choississez la couleur pour votre indice")
-        print("")
-        for i in range(len(possible_colors)):
-            print(str(i) + "- " + str(possible_colors[i]))
-        print("")
-        color = input("")
-        print("")
-    
-    return color
 
 
 
 
 def get_clue_choice():
     """
-        Retrieve Clue Giving Choice
+        Get the type of clue
 
     """
 
-    action = ""
+    choice = ""
     print("")
-    while (not((action) in ["1","2"])):
-        print_board()
+    while (not((choice) in ["1","2"])):
 
-        if action != "":
+        if choice != "":
             print("Attention la valeur choisie doit être entre 1 et 2")
         print("")
         print("Donner un indice sur")
@@ -100,10 +101,10 @@ def get_clue_choice():
         print("1- une couleur")
         print("2- un chiffre")
         print("")
-        action = input("")
+        choice = input("")
         print("")
 
-    return action_value
+    return choice
 
 
 def give_clues(turn, hands, know_infos, board, clue_token):
