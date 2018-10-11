@@ -53,7 +53,7 @@ is_game_ended = False
 error_token = 0
 
 # Number of clue tokens used : [0 ; 8]
-clue_token = 0
+clue_token = 8
 
 
 print_start_game()
@@ -62,7 +62,6 @@ print_start_game()
 # --- Play until the game is not ended
 while (not(is_game_ended)):
     turn += 1
-
 
     # Print the infos on the current turn
     print_players_hand(nb_players,turn,hands,know_infos)
@@ -84,7 +83,10 @@ while (not(is_game_ended)):
     else:
         print("Au revoir !!")
         end_game = True
-# ajouter fonction de changement de tour #
+
+
+# Print the infos on the current turn
+# ajouter fonction de changement de tour 
 
 print("-----------------")
 print("Partie terminée !")

@@ -75,13 +75,14 @@ def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
 
         table: helping knowing if a play is a error or not
 
+
         return
         ------
         the new state for deck, hands, know_infos, table, error_token,
         and clue_token after the play
     """
     print_instruction_discard(know_infos,turn)
-    print(hand[0])
+    print(hand[turn])
     card = get_card_to_discard(hand)
 
     # Retrieving card location
