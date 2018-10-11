@@ -8,13 +8,15 @@ except:
     from helpers.printers import *
 
 
-def print_instruction_discard(know_infos,turn): 
+def print_instruction_discard(know_infos, turn): 
     """
         Print Discard Instructions
 
     """
     print("Choississez la carte à défausser :")
     print("")
+    print(turn)
+    print(know_infos)
     for i in range(5):
         print(str(i + 1) + "- " + know_infos[turn][i])
     print("")
@@ -49,13 +51,11 @@ def remove_card_from_know_info(hand,know_infos,card):
         Remove card from know info
 
     """
-    index_card = hand.index(card)
     
-    know_infos[index_card] = "? "
     return know_infos
 
 
-def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
+def discard(deck, hands, know_infos, error_token, clue_token, turn, table):
     """
         Discard Function
 
@@ -81,9 +81,12 @@ def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
         the new state for deck, hands, know_infos, table, error_token,
         and clue_token after the play
     """
-    print_instruction_discard(know_infos,turn)
-    print(hand[turn])
-    card = get_card_to_discard(hand[turn])
+    print_instruction_discard(know_infos, turn)
+    card = get_card_to_discard(hands[turn])
+
+    index_card = hands[turn].index(card)
+    
+   
 
     # Retrieving card location
     card_num = int(card[0]) -1
@@ -91,25 +94,32 @@ def discard(deck,hand,know_infos,error_token,clue_token,turn,table):
     card_color = colors.index(card_color)
 
     # Tokens resolving
-    if table[card_color][card_num]==1: 
+    if (table[card_color][card_num] == 1): 
         error_token += 1
         print("Erreur !")
-    else:
+    elif (clue_token + 1 <= 8):
         clue_token += 1
         print("+1 indice !")
     # Removing card from the table
     table[card_color][card_num] -= 1
 
     # Particular case for unfinishable color of cards will not be counted as an error
-    if table[card_color][card_num]==0:
-        for i in range(5-card_num):
+    if (table[card_color][card_num] == 0):
+        for i in range(5 - card_num):
             table[card_color][card_num+i]=0
 
     # Removing information from know_infos and hands
-    know_infos = remove_card_from_know_infos(hand,know_infos,card)
-    hand = remove_card_from_hand(hand,card)
 
+    print(hands[turn])
+    print(card)
+
+    hands[turn].remove(card)
+    know_infos[turn][index_card] = "? "
+
+    print(hands[turn])
     # Drawing
-    deck,hand = draw_card(deck,hand)
+    hands[turn] = draw_card(deck,hands[turn])
 
-    return deck,hand,know_infos,error_token,clue_token,table
+    print(hands[turn])
+    return deck, hands, know_infos, error_token, clue_token, table
+

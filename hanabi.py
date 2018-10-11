@@ -89,7 +89,7 @@ while (not(is_game_ended)):
 
     
     # Check if the game is endded
-    is_game_ended = check_end_game(board, table)
+    is_game_ended = check_end_game(error_token, board, nb_players)
     
     
     # Check if the game is finish because of the lack of cards
@@ -111,7 +111,7 @@ while (not(is_game_ended)):
 
     
     # Increment the turn
-    if (turn + 1 >= nb_players):
+    if (turn + 1 >= nb_players - 1):
         turn = 0
     else:
         turn += 1
