@@ -9,7 +9,7 @@ except:
 def init_know_infos(nb_players):
     know_infos = []
     for i in range(nb_players):
-        know_infos.append(["? ","? ","? ","? ","? "])
+        know_infos.append(["??","??","??","??","??"])
     
     return know_infos
 

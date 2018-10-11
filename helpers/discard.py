@@ -100,7 +100,7 @@ def discard(deck, hands, know_infos, error_token, clue_token, turn, table):
     print(card)
 
     hands[turn].remove(card)
-    know_infos[turn][index_card] = "? "
+    know_infos[turn][index_card] = "??"
 
     print(hands[turn])
     # Drawing
