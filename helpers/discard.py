@@ -41,20 +41,6 @@ def get_card_to_discard(hand):
     return (card_to_discard)
 
 
-def remove_card_from_hand(hand,card):
-    hand.remove(card)
-    return hand
-
-
-def remove_card_from_know_info(hand,know_infos,card):
-    """
-        Remove card from know info
-
-    """
-    
-    return know_infos
-
-
 def discard(deck, hands, know_infos, error_token, clue_token, turn, table):
     """
         Discard Function

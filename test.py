@@ -14,3 +14,6 @@ possible_numeral = set(possible_numeral)
 
 print(possible_numeral)
 print(possible_color)
+
+for i in possible_color:
+        print(possible_color)
