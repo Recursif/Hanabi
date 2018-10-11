@@ -64,7 +64,7 @@ is_game_ended = False
 error_token = 0
 
 # Number of clue tokens used : [0 ; 8]
-clue_token = 0
+clue_token = 8
 
 
 print_start_game()
@@ -81,8 +81,7 @@ print_players_hand(nb_players,turn,hands,know_infos)
 print_board(board)
 
 # Get the action selected by the current player
-print_actions()
-action = get_action_from_player()
+action = get_action_from_player(clue_token, board)
 
 
 # --- Start the selected action ---
