@@ -5,11 +5,13 @@ from helpers.init import init_know_infos, init_discard_table
 from helpers.cards_utility import generate_cards, draw_card, distribute_hands
 from helpers.printers import print_start_game
 
-
 from helpers.get_actions import get_action_from_player
-from helpers.play import *
-from helpers.discard import *
-from helpers.give_clues import *
+from helpers.play import play
+from helpers.discard import discard
+from helpers.give_clues import give_clues
+
+from helpers.get_score import get_score
+from helpers.check_end_game import check_end_game
 
 # --- Initialisation ---
 # Initialisation of the board
@@ -56,22 +58,20 @@ error_token = 0
 # Number of clue tokens used : [0 ; 8]
 clue_token = 8
 
+# Number of turn player after the empty deck : [0 ; nb_players]
+turn_after_empty_deck = 0
 
 print_start_game()
 
 
 # --- Play until the game is not ended
 while (not(is_game_ended)):
-
-
     # Print the infos on the current turn
     print_players_hand(nb_players,turn,hands,know_infos)
     print_board(board)
 
     # Get the action selected by the current player
-    print_actions()
     action = get_action_from_player()
-
 
     # --- Start the selected action ---
     
@@ -86,9 +86,29 @@ while (not(is_game_ended)):
         print("Au revoir !!")
         is_game_ended = True
     
-    # Check if the game is endded
 
+    
+    # Check if the game is endded
     is_game_ended = check_end_game(board, table)
+    
+    
+    # Check if the game is finish because of the lack of cards
+    if (turn_after_empty_deck >= nb_players):
+        print("")    
+        print("Vous avez Perdu!!")
+        print("")
+        print("Score : " + get_score(board))
+        print("")
+        is_game_ended = True
+
+
+    # Increment the turn_after_empty-deck variable if the deck is empty
+    if (len(deck) <= 0):
+        print("")    
+        print("Il vous reste " + str(nb_players - turn_after_empty_deck) + " pour gagner!")
+        print("")    
+        turn_after_empty_deck += 1
+
     
     # Increment the turn
     if (turn + 1 >= nb_players):
@@ -96,11 +116,3 @@ while (not(is_game_ended)):
     else:
         turn += 1
 
-
-
-# Print the infos on the current turn
-# ajouter fonction de changement de tour 
-
-print("-----------------")
-print("Partie terminée !")
-print("-----------------")
