@@ -7,16 +7,78 @@ except:
     from helpers.printers import print_players_hand, print_board
 
 
-def print_instructions_clues():
+
+def get_color_clue(possible_colors):
     """
-        Print Clue Giving Instructions
-    
+        Print instructions clues color
     """
 
-    print("Donner un indice sur")
+    
+    color = ""
     print("")
-    print("1- une couleur")
-    print("2- un chiffre")
+    while (not((color) in [x for x in range(len(possible_colors))])):
+
+         if color != "":
+                print("Attention la valeur choisie doit être entre 1 et " + len(possible_colors))
+
+        print("Choississez la couleur pour votre indice")
+        print("")
+        for i in range(len(possible_colors)):
+            print(str(i) + "- " + str(possible_colors[i]))
+        print("")
+        color = input("")
+        print("")
+    
+    return color
+
+def get_number_clue(possible_number):
+    """
+        Print instructions clues number
+    """
+
+    
+    number = ""
+    print("")
+    while (not((number) in [x for x in range(len(possible_number))])):
+
+         if color != "":
+                print("Attention la valeur choisie doit être entre 1 et " + len(possible_number))
+
+        print("Choississez la couleur pour votre indice")
+        print("")
+        for i in range(len(possible_number)):
+            print(str(i) + "- " + str(possible_number[i]))
+        print("")
+        number = input("")
+        print("")
+    
+    return number
+
+
+def get_color_clue(possible_colors):
+    """
+        Print instructions clues color
+    """
+
+    
+    color = ""
+    print("")
+    while (not((color) in [x for x in range(len(possible_colors))])):
+
+         if color != "":
+                print("Attention la valeur choisie doit être entre 1 et " + len(possible_colors))
+
+        print("Choississez la couleur pour votre indice")
+        print("")
+        for i in range(len(possible_colors)):
+            print(str(i) + "- " + str(possible_colors[i]))
+        print("")
+        color = input("")
+        print("")
+    
+    return color
+
+
 
 
 def get_clue_choice():
@@ -43,13 +105,8 @@ def get_clue_choice():
 
     return action_value
 
-    
 
-
-
-    
-
-def give_clues(turn,hands,know_infos,board,clue_token):
+def give_clues(turn, hands, know_infos, board, clue_token):
     """
         Clue Giving Function
 
@@ -71,7 +128,19 @@ def give_clues(turn,hands,know_infos,board,clue_token):
         the new state of know_infos and clue_token after giving a clue
     """
 
-    #print_instructions_clues
-    #print_players_hand
-    #print_board
+    selected_player = get_player_selected(nb_players, turn)
+
+
+    print_instructions_clues()
+
+    clue_choice = get_clue_choice()
+
+    if (clue_choice == 1):
+        print_instructions_clues_color()
+    elif (clue_choice == 2):
+        print_instructions_clues_digit()
+    else:
+        print("Are you hacking bro?")
+    
+
 
