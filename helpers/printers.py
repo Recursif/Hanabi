@@ -41,16 +41,3 @@ def print_board(board):
     print("")
     print(second_line)
     print("")
-
-
-def print_actions():
-    """
-        Print the different action choice available
-    """
-    print("Choississez une action parmi celles-ci:")
-    print("")
-    print("1- Jouer une carte")
-    print("2- Défausser une carte")
-    print("3- Donner un indice")
-    print("4- Quit")
-

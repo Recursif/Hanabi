@@ -1,11 +1,15 @@
 
 import random 
 
-from helpers.printers import *
-from helpers.discard import *
+from helpers.init import init_know_infos, init_discard_table
 from helpers.cards_utility import generate_cards, draw_card, distribute_hands
-from helpers.play import *
+from helpers.printers import *
 
+
+from helpers.get_actions import get_action_from_player
+from helpers.play import *
+from helpers.discard import *
+from helpers.give_clues import *
 
 # --- Initialisation ---
 # Initialisation of the board
@@ -15,14 +19,11 @@ board = ['0B','0Y','0R','0W','0G']
 nb_players = 3
 
 # Initialisation of the know infos
-know_infos = []
-for i in range(nb_players):
-    know_infos.append(["? ","? ","? ","? ","? "])
+know_infos = init_know_infos(nb_players)
 
 # Initialisation of the discard table
-table = []
-for i in range (5):
-    table.append([3,2,2,1,1])
+table = init_discard_table()
+
 
 # --- Genaration of the deck ---
 # Generate the deck
