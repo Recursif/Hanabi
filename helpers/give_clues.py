@@ -22,14 +22,14 @@ def get_selected_hand(hands, turn):
         print("Choississez la main que vous voulez selectionner")
         print("")
         for i in range(len(hands)):
-            if (turn != i)
+            if (turn != i):
                 print(str(i) + "- " + " ".join(hands[i]))
                 possible_hands.append(hands[i])
         print("")
         hand = int(input(""))
         print("")
 
-    hand = possible_hands[hand]
+    hand = possible_hands[hand -1]
     return hand
 
 
@@ -147,6 +147,8 @@ def give_clues(hands, know_infos, turn):
 
     selected_hand = get_selected_hand(hands, turn)
 
+    print(" ".join(selected_hand))
+    print("")
     selected_hand_index = hands.index(selected_hand)
 
     possible_numbers = list(set([x[0] for x in selected_hand]))
@@ -166,5 +168,4 @@ def give_clues(hands, know_infos, turn):
     else:
         print("Are you hacking bro?")
     
-
-return know_infos
+    return know_infos
