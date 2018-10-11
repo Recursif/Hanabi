@@ -6,27 +6,31 @@ except:
     from helpers.printers import print_players_hand, print_board
 
 
-def get_player_selected(hands, nb_players, turn):
+def get_selected_hand(hands, turn):
     """
         Print instructions clues color
     """
 
     hand = ""
     print("")
-    while (not((hand) in [x for x in range(len(nb_players) - 1)])):
+    while (not((hand) in [x for x in range(len(hands) - 1)])):
 
+        possible_hands = []
         if hand != "":
-            print("Attention la main choisie doit être entre 1 et " + str(len(nb_players) - 1))
+            print("Attention la main choisie doit être entre 1 et " + str(len(hands) - 1))
 
         print("Choississez la main que vous voulez selectionner")
         print("")
         for i in range(len(hands)):
-            print(str(i) + "- " + " ".join(hands[i]))
+            if (turn != i)
+                print(str(i) + "- " + " ".join(hands[i]))
+                possible_hands.append(hands[i])
         print("")
-        hand = input("")
+        hand = int(input(""))
         print("")
 
-    return color
+    hand = possible_hands[hand]
+    return hand
 
 
 def get_color_clue(possible_colors):
@@ -53,7 +57,7 @@ def get_color_clue(possible_colors):
     return color
 
 
-def get_number_clue(possible_number):
+def get_number_clue(possible_numbers):
     """
         Get number given as a clue
 
@@ -61,15 +65,15 @@ def get_number_clue(possible_number):
     
     number = ""
     print("")
-    while (not((number) in [x for x in range(len(possible_number))])):
+    while (not((number) in [x for x in range(len(possible_numbers))])):
 
         if number != "":
-            print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_number)))
+            print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_numbers)))
 
         print("Choississez la couleur pour votre indice")
         print("")
-        for i in range(len(possible_number)):
-            print(str(i) + "- " + str(possible_number[i]))
+        for i in range(len(possible_numbers)):
+            print(str(i) + "- " + str(possible_numbers[i]))
         print("")
         number = input("")
         print("")
@@ -100,7 +104,30 @@ def get_clue_choice():
     return choice
 
 
-def give_clues(turn,hands,know_infos,board,clue_token,nb_players):
+def set_color_clue(know_infos, selected_hand, selected_hand_index, color_clue):
+    """
+        Set the color as a clue in know_infos
+
+    """
+    for i in range(5):
+        if (selected_hand[i][1] == color_clue):
+            know_infos[selected_hand_index][i][1] ==  selected_hand[i][1]
+
+    return know_infos
+
+def set_number_clue(know_infos, selected_hand, selected_hand_index, number_clue):
+    """
+        Set the number as a clue in know_infos
+
+    """
+    for i in range(5):
+        if (selected_hand[i][1] == number_clue):
+            know_infos[selected_hand_index][i][1] ==  selected_hand[i][1]
+
+    return know_infos
+
+
+def give_clues(hands, know_infos, turn):
     """
         Clue Giving Function
 
@@ -110,15 +137,7 @@ def give_clues(turn,hands,know_infos,board,clue_token,nb_players):
 
         know_infos: list of the know infos
 
-        board: cards already played
-
-        clue_token: the number of clue tokens
-
         turn: the number of the current player
-
-        action_color: empty if player give numeral clue
-
-        action_numeral: empty if player give color clue
 
 
         return
@@ -126,21 +145,26 @@ def give_clues(turn,hands,know_infos,board,clue_token,nb_players):
         the new state of know_infos and clue_token after giving a clue
     """
 
-    selected_player = get_player_selected(nb_players, turn)
+    selected_hand = get_selected_hand(hands, turn)
 
+    selected_hand_index = hands.index(selected_hand)
 
-    print_instructions_clues()
+    possible_numbers = list(set([x[0] for x in selected_hand]))
+    possible_colors = list(set([x[1] for x in selected_hand]))
 
     clue_choice = get_clue_choice()
 
     if (clue_choice == 1):
-        action_color = get_color_clue(action_player,hands)
-        know_infos = color_clue_giving(action_player,action_color,know_infos,hands)
+
+        color_clue = get_color_clue(possible_colors)
+
+        know_infos = set_color_clue(know_infos, selected_hand, selected_hand_index, color_clue)
     elif (clue_choice == 2):
-        action_numeral = get_numeral_clue(action_player,hands)
-        know_infos = numeral_clue_giving(action_player,action_numeral,know_infos,hands)
+        number_clue = get_number_clue(possible_numbers)
+
+        know_infos = set_number_clue(know_infos, selected_hand, selected_hand_index, number_clue)
     else:
         print("Are you hacking bro?")
     
 
-
+return know_infos
