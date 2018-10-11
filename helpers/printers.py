@@ -1,4 +1,5 @@
 
+
 try:
     from constant import *
 except:
@@ -41,3 +42,4 @@ def print_board(board):
     print("")
     print(second_line)
     print("")
+

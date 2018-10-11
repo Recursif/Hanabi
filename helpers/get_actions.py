@@ -1,5 +1,11 @@
 
 
+try:
+    from constant import *
+except:
+    from helpers.constant import *
+
+
 def get_action_from_player(clue_token):
     """
         Get the action selected by the player
@@ -42,4 +48,4 @@ def get_action_from_player(clue_token):
             print("")
 
     return (action)
-    
+

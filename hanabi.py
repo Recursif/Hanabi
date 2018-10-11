@@ -3,7 +3,7 @@ import random
 
 from helpers.init import init_know_infos, init_discard_table
 from helpers.cards_utility import generate_cards, draw_card, distribute_hands
-from helpers.printers import *
+from helpers.printers import print_start_game
 
 
 from helpers.get_actions import get_action_from_player
@@ -62,7 +62,7 @@ print_start_game()
 
 # --- Play until the game is not ended
 while (not(is_game_ended)):
-    turn += 1
+
 
     # Print the infos on the current turn
     print_players_hand(nb_players,turn,hands,know_infos)
@@ -74,16 +74,28 @@ while (not(is_game_ended)):
 
 
     # --- Start the selected action ---
+    
     if (action == "1"):
-        deck,board,hands,know_infos,error_token = play(deck,board,hands,know_infos,error_token,turn)
+        deck, board, hands, know_infos, error_token = play(deck,board,hands,know_infos,error_token,turn)
     elif (action == "2"):
-        deck,hands,know_infos,error_token,clue_token,table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
+        deck,hands, know_infos, error_token, clue_token, table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
     elif(action == "3"):
         print("Donner un indice n'est pas encore implemeté")
         #give_clues()
     else:
         print("Au revoir !!")
-        end_game = True
+        is_game_ended = True
+    
+    # Check if the game is endded
+
+    is_game_ended = check_end_game(board, table)
+    
+    # Increment the turn
+    if (turn + 1 >= nb_players):
+        turn = 0
+    else:
+        turn += 1
+
 
 
 # Print the infos on the current turn

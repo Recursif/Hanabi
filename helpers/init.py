@@ -18,3 +18,7 @@ def init_discard_table():
     table = []
     for i in range (5):
         table.append([3,2,2,1,1])
+
+    return table
+
+
