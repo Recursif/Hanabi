@@ -85,11 +85,13 @@ while (not(is_game_ended)):
     else:
         print("Au revoir !!")
         is_game_ended = True
+        print("")
     
 
     
     # Check if the game is endded
-    is_game_ended = check_end_game(error_token, board, nb_players)
+    if (not(is_game_ended)):
+        is_game_ended = check_end_game(error_token, board, nb_players)
     
     
     # Check if the game is finish because of the lack of cards
