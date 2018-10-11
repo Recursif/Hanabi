@@ -1,16 +1,16 @@
 
-print(",".join(["1","3","9"]))
 
-a = []
-print(a.pop())
-# --- Exemple pour toto --- 
+possible_numeral = []
+possible_color = []
+liste = ["1R","2B","3G","2G","5W"]
+
+for i in range(5):
+    possible_numeral.append(liste[i][0])
+    possible_color.append(liste[i][1])
 
 
-# 4G 4 le nombre et G la couleur 
-# cards = ["1G","1G","1G"....]
+possible_color = set(possible_color)
+possible_numeral = set(possible_numeral)
 
-# range(5) = [0,1,2,3,4]
-
-# print(repartition[5])
-
-# print(len(repartition))
+print(possible_numeral)
+print(possible_color)

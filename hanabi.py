@@ -80,8 +80,7 @@ while (not(is_game_ended)):
     elif (action == "2"):
         deck,hands, know_infos, error_token, clue_token, table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
     elif(action == "3"):
-        print("Donner un indice n'est pas encore implemeté")
-        #give_clues()
+        give_clues(turn,hands,know_infos,board,clue_token,nb_players)
     else:
         print("Au revoir !!")
         is_game_ended = True
