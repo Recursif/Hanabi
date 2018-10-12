@@ -22,8 +22,6 @@ def get_selected_hand(hands, turn):
         print("Choississez la main que vous voulez selectionner")
         print("")
         j = 1
-        print(turn)
-        print(len(hands))
         for i in range(1, len(hands) + 1):
             if (turn != i - 1):
                 
@@ -47,7 +45,7 @@ def get_color_clue(possible_colors):
     
     color = ""
     print("")
-    while (not(color in [str(x) for x in range(len(possible_colors))])):
+    while (not(color in [str(x) for x in range(len(possible_colors) + 1)])):
 
         if color != "":
             print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_colors)))
@@ -60,8 +58,7 @@ def get_color_clue(possible_colors):
         color = input("")
         print("")
     
-    color = possible_colors[int(color) -1]
-    print(color)
+    color = possible_colors[int(color) - 1]
     return color
 
 
@@ -73,19 +70,20 @@ def get_number_clue(possible_numbers):
     
     number = ""
     print("")
-    while (not(number in [str(x) for x in range(len(possible_numbers))])):
+    while (not(number in [str(x) for x in range(len(possible_numbers) + 1)])):
 
         if number != "":
             print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_numbers)))
 
         print("Choississez le nombre pour votre indice")
         print("")
-        for i in range(1, len(possible_numbers) + 1):
-            print(str(i + 1) + "- " + str(possible_numbers[i - 1]))
+        for i in range(len(possible_numbers)):
+            print(str(i + 1) + "- " + str(possible_numbers[i]))
         print("")
         number = input("")
         print("")
     
+    number = possible_numbers[int(number) - 1]
     return number
 
 
@@ -118,8 +116,6 @@ def set_color_clue(know_infos, selected_hand, selected_hand_index, color_clue):
 
     """
     for i in range(5):
-        print(selected_hand[i][1])
-        print(color_clue)
         if (selected_hand[i][1] == color_clue):
             list_know_infos = list(know_infos[selected_hand_index][i])
             list_know_infos[1] = selected_hand[i][1]
@@ -162,7 +158,7 @@ def give_clues(hands, know_infos, turn):
     selected_hand = get_selected_hand(hands, turn)
 
     print(" ".join(selected_hand))
-    print("")
+
     selected_hand_index = hands.index(selected_hand)
 
     possible_numbers = list(set([x[0] for x in selected_hand]))
@@ -171,16 +167,12 @@ def give_clues(hands, know_infos, turn):
     clue_choice = get_clue_choice()
 
     if (clue_choice == "1"):
-
         color_clue = get_color_clue(possible_colors)
-
         know_infos = set_color_clue(know_infos, selected_hand, selected_hand_index, color_clue)
     elif (clue_choice == "2"):
         number_clue = get_number_clue(possible_numbers)
-        print(color_clue)
         know_infos = set_number_clue(know_infos, selected_hand, selected_hand_index, number_clue)
     else:
         print("Are you hacking bro?")
     
-    print(know_infos)
     return know_infos

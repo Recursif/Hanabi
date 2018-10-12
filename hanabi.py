@@ -112,7 +112,7 @@ while (not(is_game_ended)):
 
     
     # Increment the turn
-    if (turn + 1 >= nb_players - 1):
+    if (turn + 1 >= nb_players):
         turn = 0
     else:
         turn += 1

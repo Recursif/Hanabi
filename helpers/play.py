@@ -106,7 +106,7 @@ def play(deck,board,hands,know_infos,error_token,turn):
         board = play_card(board,card)
         
         # Then remove the card from the hand of the player
-        know_infos[index_card] = "??"
+        know_infos[turn][index_card] = "??"
         hands[turn].remove(card)
 
         # Finally draw a card
