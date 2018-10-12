@@ -34,7 +34,7 @@ def print_players_hand(nb_players, turn, hands, know_infos):
     print("")
 
 
-def print_board(board):
+def print_board(board, clue_token):
     first_line = "Board"
     second_line = " ".join(board)
 
@@ -42,4 +42,5 @@ def print_board(board):
     print("")
     print(second_line)
     print("")
+    print("Vous avez",clue_token,"indices")
 

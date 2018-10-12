@@ -15,7 +15,7 @@ def print_instruction_play(hand):
     print("Choississez la carte que vous voulez jouer")
     print("")
     for i in range(5):
-        print(str(i + 1) + "- " + hand[i])
+        print(str(i + 1) + "- " + know_infos[turn][i])
     print("")
 
 def get_card_to_play(hand):
@@ -26,7 +26,6 @@ def get_card_to_play(hand):
     action_value = input("")
     print("")
     while (not((action_value) in ["1","2","3","4","5"])):
-        print_board()
         print("attention la valeur choisie doit être entre 1 et 5")
         print("")
         action_value = input("")

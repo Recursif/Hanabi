@@ -13,7 +13,7 @@ def get_selected_hand(hands, turn):
 
     hand = ""
     print("")
-    while (not(hand in [str(x) for x in range(1, len(hands) + 1)])):
+    while (not(hand in [str(x) for x in range(1, len(hands))])):
 
         possible_hands = []
         if hand != "":
@@ -45,7 +45,7 @@ def get_color_clue(possible_colors):
     
     color = ""
     print("")
-    while (not(color in [str(x) for x in range(len(possible_colors) + 1)])):
+    while (not(color in [str(x) for x in range(1, len(possible_colors) + 1)])):
 
         if color != "":
             print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_colors)))
@@ -70,7 +70,7 @@ def get_number_clue(possible_numbers):
     
     number = ""
     print("")
-    while (not(number in [str(x) for x in range(len(possible_numbers) + 1)])):
+    while (not(number in [str(x) for x in range(1, len(possible_numbers + 1))])):
 
         if number != "":
             print("Attention la valeur choisie doit être entre 1 et " + str(len(possible_numbers)))

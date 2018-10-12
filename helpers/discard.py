@@ -15,8 +15,7 @@ def print_instruction_discard(know_infos, turn):
     """
     print("Choississez la carte à défausser :")
     print("")
-    print(turn)
-    print(know_infos)
+    print(know_infos[turn])
     for i in range(5):
         print(str(i + 1) + "- " + know_infos[turn][i])
     print("")
@@ -31,7 +30,6 @@ def get_card_to_discard(hand):
     action_value = input("")
     print("")
     while (not((action_value) in ["1","2","3","4","5"])):
-        print_board()
         print("Attention la valeur choisie doit être entre 1 et 5")
         print("")
         action_value = input("")

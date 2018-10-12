@@ -68,7 +68,7 @@ print_start_game()
 while (not(is_game_ended)):
     # Print the infos on the current turn
     print_players_hand(nb_players,turn,hands,know_infos)
-    print_board(board)
+    print_board(board, clue_token)
 
     # Get the action selected by the current player
     action = get_action_from_player(clue_token)
@@ -80,7 +80,7 @@ while (not(is_game_ended)):
     elif (action == "2"):
         deck,hands, know_infos, error_token, clue_token, table = discard(deck,hands,know_infos,error_token,clue_token,turn,table)
     elif(action == "3"):
-        know_infos = give_clues(hands, know_infos, turn)
+        give_clues(turn, hands, know_infos, board, clue_token, nb_players)
     else:
         print("Au revoir !!")
         is_game_ended = True
@@ -95,7 +95,7 @@ while (not(is_game_ended)):
     
     # Check if the game is finish because of the lack of cards
     if (turn_after_empty_deck >= nb_players):
-        print("")    
+        print("")     
         print("Vous avez Perdu!!")
         print("")
         print("Score : " + get_score(board))
@@ -112,7 +112,7 @@ while (not(is_game_ended)):
 
     
     # Increment the turn
-    if (turn + 1 >= nb_players):
+    if (turn + 1 >= nb_players - 1):
         turn = 0
     else:
         turn += 1
